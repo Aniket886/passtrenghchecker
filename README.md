@@ -59,11 +59,12 @@ SHA256 Hashing - For hashing passwords
 Check out the live demo of the app here: https://password-strength-checke-r9fafcn.gamma.site/
 
 ----------------------------------------------
-📄 License-
-
-This project is licensed under the MIT License
+📄 **License-**
 ----------------------------------------------
+This project is licensed under the MIT License
 
+
+----------------------------------------------
 🛡️ Built by:
 
 𝐀𝐍𝐈𝐊𝐄𝐓 𝐓𝐄𝐆𝐆𝐈𝐍𝐀𝐌𝐀𝐓𝐇
