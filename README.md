@@ -1,6 +1,6 @@
 🔒 **Password Strength Checker** [ Beginner Project ]
 
-Welcome to the **Password Strength Checker**! This is a simple web application that checks the strength of your password based on various criteria like length, complexity, and special characters. The app uses Flask on the backend and provides a sleek, neon-themed frontend to help you evaluate your password strength.
+Welcome to the **Password Strength Checker**! This is a simple web application that checks the strength of your password based on various criteria like length, complexity, and special characters. 
 
 ----------------------------------------------
 🚀 Features:
@@ -31,15 +31,9 @@ To run this project locally, follow these steps:
 🧑‍💻 Technologies Used:
 ----------------------------------------------
 
-Flask - Web framework for Python
-
 HTML/CSS - Frontend design
 
 JavaScript - Real-time password validation
-
-AES Encryption - For securing passwords
-
-SHA256 Hashing - For hashing passwords
 
 ----------------------------------------------
 🛠️ Features & Functionality:
