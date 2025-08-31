@@ -25,7 +25,7 @@ To run this project locally, follow these steps:
      python app.py
 
 4. Open the app in your browser:
-     Navigate to http://127.0.0.1:5000/ to view the password strength checker in action.
+     Navigate to https://password-strength-checke-r9fafcn.gamma.site/ to view the password strength checker in action.
 
 ----------------------------------------------
 🧑‍💻 Technologies Used:
