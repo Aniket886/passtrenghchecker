@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Strength Checker</title>
+    <title>CYBERPUNK SECURITY PROTOCOL v2.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
+        @keyframes matrix-rain {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        @keyframes neon-pulse {
+            0%, 100% { text-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00; }
+            50% { text-shadow: 0 0 1px #00ff00, 0 0 3px #00ff00; }
+        }
+        
+        @keyframes scan-line {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #00ff00; }
+            51%, 100% { border-color: transparent; }
+        }
+
         body {
-            font-family: 'Courier New', Courier, monospace;
-            background: #121212;
+            font-family: 'Share Tech Mono', monospace;
+            background: #000;
             color: #00ff00;
             margin: 0;
             padding: 0;
@@ -15,90 +50,340 @@
             flex-direction: column;
             justify-content: space-between;
             min-height: 100vh;
-            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
-            background-size: cover;
+            overflow-x: hidden;
             overflow-y: auto;
+            position: relative;
+        }
+        
+        /* Matrix Rain Background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .matrix-column {
+            position: absolute;
+            top: -100vh;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            line-height: 14px;
+            opacity: 0.1;
+            animation: matrix-rain 10s linear infinite;
+        }
+        
+        /* Scan Line Effect */
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            z-index: 1000;
+            animation: scan-line 3s linear infinite;
+            box-shadow: 0 0 10px #00ff00;
+            pointer-events: none;
+        }
+        
+        /* Glitch Overlay */
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 98%, rgba(0, 255, 0, 0.03) 100%),
+                linear-gradient(0deg, transparent 98%, rgba(0, 255, 0, 0.03) 100%);
+            background-size: 3px 3px;
+            z-index: -1;
+            animation: glitch 0.3s infinite;
         }
 
         h1 {
-            font-size: 3em;
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2em;
+            font-weight: 700;
             text-align: center;
             text-transform: uppercase;
-            color: #00FF00;
+            color: #00ff00;
             margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        h1::before {
+            content: "> ";
+            color: #ff0080;
+            animation: blink 1s infinite;
+        }
+        
+        h1::after {
+            content: " <";
+            color: #ff0080;
+            animation: blink 1s infinite;
         }
 
         .container {
-            width: 499px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
-            border: 2px solid #00FF00;
+            width: 600px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 20, 0, 0.8));
+            padding: 40px;
+            border-radius: 0;
+            border: 2px solid #00ff00;
             margin: 20px auto;
+            position: relative;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 0, 0.3),
+                inset 0 0 10px rgba(0, 255, 0, 0.05);
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ff00, #ff0080, #00ff00, #ff0080);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        
+        .terminal-header {
+            background: #001100;
+            padding: 10px 20px;
+            border-bottom: 1px solid #00ff00;
+            margin: -40px -40px 20px -40px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27ca3f; }
+        
+        .terminal-title {
+            color: #00ff00;
+            font-weight: bold;
         }
 
         label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-bottom: 10px;
             display: block;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        label::before {
+            content: "> ";
+            color: #ff0080;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 12px;
-            border-radius: 500px;
-            border: 1px solid #00FF00;
-            background-color: #1a1a1a;
-            color: #ff0000;
-            font-size: 1em;
+            padding: 15px;
+            border: 2px solid #00ff00;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.1em;
             margin-bottom: 20px;
             outline: none;
+            border-radius: 0;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
         input[type="text"]:focus {
-            border-color: #00BFFF;
+            border-color: #ff0080;
+            box-shadow: 
+                inset 0 0 5px rgba(255, 0, 128, 0.2),
+                0 0 8px rgba(255, 0, 128, 0.3);
+        }
+        
+        input[type="text"]::placeholder {
+            color: #004400;
+            font-style: italic;
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #00FF00;
-            border: none;
+            padding: 15px;
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            border: 2px solid #00ff00;
             color: #000;
+            font-family: 'Orbitron', monospace;
             font-size: 1.2em;
-            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
-            background-color: #00BFFF;
+            background: linear-gradient(45deg, #ff0080, #ff0066);
+            border-color: #ff0080;
+            box-shadow: 0 0 10px rgba(255, 0, 128, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover::before {
+            left: 100%;
         }
 
         .result {
             margin-top: 20px;
-            padding: 10px;
-            background-color: #222;
-            border-radius: 5px;
-            border: 1px solid #00FF00;
-            color: #00FF00;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 20, 0, 0.8));
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+        
+        .result::before {
+            content: "SYSTEM STATUS: ";
+            color: #ff0080;
+            font-weight: bold;
+        }
+        
+        .result.secure::before {
+            content: "SECURITY PROTOCOL: ";
+            color: #00ff00;
+        }
+        
+        .result.breach::before {
+            content: "SECURITY BREACH: ";
+            color: #ff0000;
         }
 
         .checkbox-group {
-            margin-top: 15px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border: 1px solid #00ff00;
+        }
+        
+        .checkbox-group::before {
+            content: "SECURITY CRITERIA ANALYSIS:";
+            display: block;
+            color: #ff0080;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .checkbox-group input[type="checkbox"] {
             margin-right: 10px;
-            transform: scale(1.3);
+            transform: scale(1.5);
             cursor: pointer;
-            background-color: #ffffff;
+            accent-color: #00ff00;
+            transition: all 0.3s ease;
+            width: 18px;
+            height: 18px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 3px;
+        }
+        
+        .checkbox-group input[type="checkbox"]:checked {
+            background-color: #00ff00;
+            border-color: #00ff00;
+            animation: checkboxStrike 0.6s ease-in-out;
+            accent-color: #00ff00;
+            filter: hue-rotate(120deg) saturate(2) brightness(1.2);
+        }
+        
+        @keyframes checkboxStrike {
+            0% { 
+                transform: scale(1.5) rotate(0deg);
+                box-shadow: 0 0 0 rgba(0, 255, 0, 0);
+            }
+            50% { 
+                transform: scale(2) rotate(5deg);
+                box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+            }
+            100% { 
+                transform: scale(1.5) rotate(0deg);
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.4);
+            }
         }
 
         .checkbox-group label {
-            color: #00c3ff;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .checkbox-group label.valid {
+            color: #00ff00;
+            text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+            animation: labelGlow 0.5s ease-in-out;
+        }
+        
+        .checkbox-group label.invalid {
+            color: #ff0000;
+            text-shadow: 0 0 2px rgba(255, 0, 0, 0.3);
+        }
+        
+        @keyframes labelGlow {
+            0% { 
+                text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+                transform: scale(1.02);
+            }
+            100% { 
+                text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+                transform: scale(1);
+            }
         }
 
         /* Add strikethrough animation */
@@ -110,60 +395,132 @@
         /* Footer Styling */
         footer {
             width: 100%;
-            background-color: #333;
-            color: white;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 20, 0, 0.8));
+            color: #00ff00;
             text-align: center;
             padding: 20px;
-            margin-top: auto; /* Pushes footer to the bottom */
+            margin-top: auto;
+            border-top: 2px solid #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            opacity: 0.7;
         }
 
         footer p {
             margin: 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         footer a {
-            color: #00BFFF;
+            color: #ff0080;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         footer a:hover {
-            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
+            transform: scale(1.05);
+        }
+        
+        .neon-name {
+            text-shadow: 0 0 3px rgba(0, 255, 0, 0.4);
+            font-weight: bold;
         }
 
         /* Progress bar container */
         #strengthBarContainer {
             width: 100%;
-            height: 10px;
-            background-color: #444;
-            border-radius: 5px;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
             margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #strengthBarContainer::before {
+            content: "SECURITY LEVEL:";
+            position: absolute;
+            top: -25px;
+            left: 0;
+            color: #ff0080;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Progress bar itself */
         #strengthBar {
             height: 100%;
             width: 0;
-            background-color: red;
-            border-radius: 5px;
+            background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00);
+            transition: all 0.5s ease;
+            position: relative;
+            box-shadow: 0 0 10px currentColor;
+        }
+        
+        #strengthBar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
     </style>
 </head>
 <body>
+    <!-- Matrix Rain Background -->
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <!-- Glitch Overlay -->
+    <div class="glitch-overlay"></div>
+    
+    <!-- Scan Line Effect -->
+    <div class="scan-line"></div>
 
     <div class="container">
-        <h1>Password Strength Checker</h1>
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+            </div>
+            <div class="terminal-title">CYBERPUNK SECURITY PROTOCOL v2.0</div>
+        </div>
+        
+        <h1>SECURITY BREACH ANALYZER</h1>
+        
         <form id="passwordForm">
-            <label for="password">Enter Password:</label>
-            <input type="text" id="password" required>
+            <label for="password">ENTER TARGET PASSWORD:</label>
+            <input type="text" id="password" placeholder="INITIALIZING PASSWORD SCAN..." required>
         </form>
 
         <!-- Password criteria checkboxes -->
         <div class="checkbox-group">
-            <label><input type="checkbox" id="lengthCheck" disabled> Minimum length 12 characters</label><br>
-            <label><input type="checkbox" id="upperCheck" disabled> At least one uppercase letter</label><br>
-            <label><input type="checkbox" id="lowerCheck" disabled> At least one lowercase letter</label><br>
-            <label><input type="checkbox" id="numberCheck" disabled> At least one number</label><br>
-            <label><input type="checkbox" id="specialCheck" disabled> At least one special character</label>
+            <label><input type="checkbox" id="lengthCheck" disabled> CRYPTOGRAPHIC LENGTH PROTOCOL (12+ CHARS)</label><br>
+            <label><input type="checkbox" id="upperCheck" disabled> UPPERCASE ALPHA-NUMERIC DETECTED</label><br>
+            <label><input type="checkbox" id="lowerCheck" disabled> LOWERCASE ALPHA-NUMERIC DETECTED</label><br>
+            <label><input type="checkbox" id="numberCheck" disabled> NUMERIC SEQUENCE DETECTED</label><br>
+            <label><input type="checkbox" id="specialCheck" disabled> SPECIAL SYMBOL MATRIX DETECTED</label>
         </div>
 
         <div id="result" class="result"></div>
@@ -176,104 +533,240 @@
 
     <!-- Footer Section -->
     <footer>
-    <p>Developed by <strong class="neon-name" style="color: #00FF00; text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);">Aniket Tegginamath</strong></p>
-    <p><a href="https://linktr.ee/anikettegginamath">Contact</a></p>
-    <p>&copy; 2025 Aniket Tegginamath. All rights reserved.</p>
+    <p>SYSTEM DEVELOPED BY <strong class="neon-name">ANIKET TEGGINAMATH</strong></p>
+    <p><a href="https://linktr.ee/anikettegginamath">ESTABLISH SECURE CONNECTION</a></p>
+    <p>&copy; 2025 CYBERPUNK SECURITY PROTOCOL. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrixBg');
+            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDelay = Math.random() * 10 + 's';
+                column.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                
+                let text = '';
+                for (let j = 0; j < 50; j++) {
+                    text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                matrixBg.appendChild(column);
+            }
+        }
+        
+        // Initialize matrix rain
+        createMatrixRain();
+        
+        // Cyberpunk sound effects (using Web Audio API)
+        function playBeep(frequency, duration) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'square';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        // Typewriter effect
+        function typewriterEffect(element, text, speed = 50) {
+            element.innerHTML = '';
+            let i = 0;
+            const timer = setInterval(() => {
+                element.innerHTML += text.charAt(i);
+                i++;
+                if (i > text.length) {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+        
+        // Glitch effect
+        function glitchEffect(element) {
+            const originalText = element.textContent;
+            const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            let glitchText = '';
+            
+            for (let i = 0; i < originalText.length; i++) {
+                if (Math.random() < 0.1) {
+                    glitchText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                } else {
+                    glitchText += originalText[i];
+                }
+            }
+            
+            element.textContent = glitchText;
+            
+            setTimeout(() => {
+                element.textContent = originalText;
+            }, 100);
+        }
+        
+        // Password analysis with cyberpunk theme
         document.getElementById("password").addEventListener("input", function() {
             const password = document.getElementById("password").value;
             const resultDiv = document.getElementById("result");
 
-            // Initialize the checkboxes to false and remove strikethrough
-            let isLengthValid = false;
-            let isUpperValid = false;
-            let isLowerValid = false;
-            let isNumberValid = false;
-            let isSpecialValid = false;
-            let strength = 0;
-
-            // Check for password length
+            // Initialize security analysis
+            let securityLevel = 0;
+            let breachDetected = false;
+            
+            // Security Protocol 1: Length Analysis
+            const lengthCheck = document.getElementById("lengthCheck");
+            const lengthLabel = lengthCheck.parentElement;
             if (password.length >= 12) {
-                isLengthValid = true;
-                strength++;
-                document.getElementById("lengthCheck").checked = true;
-                document.getElementById("lengthCheck").classList.remove("invalid");
+                if (!lengthCheck.checked) {
+                    lengthCheck.checked = true;
+                    // Trigger striking animation
+                    lengthCheck.style.animation = 'none';
+                    lengthCheck.offsetHeight; // Trigger reflow
+                    lengthCheck.style.animation = 'checkboxStrike 0.6s ease-in-out';
+                }
+                lengthLabel.classList.add('valid');
+                lengthLabel.classList.remove('invalid');
+                securityLevel++;
             } else {
-                document.getElementById("lengthCheck").checked = false;
-                document.getElementById("lengthCheck").classList.add("invalid");
+                lengthCheck.checked = false;
+                lengthLabel.classList.add('invalid');
+                lengthLabel.classList.remove('valid');
+                breachDetected = true;
             }
 
-            // Check for uppercase letter
+            // Security Protocol 2: Uppercase Detection
+            const upperCheck = document.getElementById("upperCheck");
+            const upperLabel = upperCheck.parentElement;
             if (/[A-Z]/.test(password)) {
-                isUpperValid = true;
-                strength++;
-                document.getElementById("upperCheck").checked = true;
-                document.getElementById("upperCheck").classList.remove("invalid");
+                if (!upperCheck.checked) {
+                    upperCheck.checked = true;
+                    // Trigger striking animation
+                    upperCheck.style.animation = 'none';
+                    upperCheck.offsetHeight; // Trigger reflow
+                    upperCheck.style.animation = 'checkboxStrike 0.6s ease-in-out';
+                }
+                upperLabel.classList.add('valid');
+                upperLabel.classList.remove('invalid');
+                securityLevel++;
             } else {
-                document.getElementById("upperCheck").checked = false;
-                document.getElementById("upperCheck").classList.add("invalid");
+                upperCheck.checked = false;
+                upperLabel.classList.add('invalid');
+                upperLabel.classList.remove('valid');
+                breachDetected = true;
             }
 
-            // Check for lowercase letter
+            // Security Protocol 3: Lowercase Detection
+            const lowerCheck = document.getElementById("lowerCheck");
+            const lowerLabel = lowerCheck.parentElement;
             if (/[a-z]/.test(password)) {
-                isLowerValid = true;
-                strength++;
-                document.getElementById("lowerCheck").checked = true;
-                document.getElementById("lowerCheck").classList.remove("invalid");
+                if (!lowerCheck.checked) {
+                    lowerCheck.checked = true;
+                    // Trigger striking animation
+                    lowerCheck.style.animation = 'none';
+                    lowerCheck.offsetHeight; // Trigger reflow
+                    lowerCheck.style.animation = 'checkboxStrike 0.6s ease-in-out';
+                }
+                lowerLabel.classList.add('valid');
+                lowerLabel.classList.remove('invalid');
+                securityLevel++;
             } else {
-                document.getElementById("lowerCheck").checked = false;
-                document.getElementById("lowerCheck").classList.add("invalid");
+                lowerCheck.checked = false;
+                lowerLabel.classList.add('invalid');
+                lowerLabel.classList.remove('valid');
+                breachDetected = true;
             }
 
-            // Check for number
+            // Security Protocol 4: Numeric Sequence Detection
+            const numberCheck = document.getElementById("numberCheck");
+            const numberLabel = numberCheck.parentElement;
             if (/[0-9]/.test(password)) {
-                isNumberValid = true;
-                strength++;
-                document.getElementById("numberCheck").checked = true;
-                document.getElementById("numberCheck").classList.remove("invalid");
+                if (!numberCheck.checked) {
+                    numberCheck.checked = true;
+                    // Trigger striking animation
+                    numberCheck.style.animation = 'none';
+                    numberCheck.offsetHeight; // Trigger reflow
+                    numberCheck.style.animation = 'checkboxStrike 0.6s ease-in-out';
+                }
+                numberLabel.classList.add('valid');
+                numberLabel.classList.remove('invalid');
+                securityLevel++;
             } else {
-                document.getElementById("numberCheck").checked = false;
-                document.getElementById("numberCheck").classList.add("invalid");
+                numberCheck.checked = false;
+                numberLabel.classList.add('invalid');
+                numberLabel.classList.remove('valid');
+                breachDetected = true;
             }
 
-            // Check for special character
+            // Security Protocol 5: Special Symbol Matrix Detection
+            const specialCheck = document.getElementById("specialCheck");
+            const specialLabel = specialCheck.parentElement;
             if (/[@$!%*?&]/.test(password)) {
-                isSpecialValid = true;
-                strength++;
-                document.getElementById("specialCheck").checked = true;
-                document.getElementById("specialCheck").classList.remove("invalid");
+                if (!specialCheck.checked) {
+                    specialCheck.checked = true;
+                    // Trigger striking animation
+                    specialCheck.style.animation = 'none';
+                    specialCheck.offsetHeight; // Trigger reflow
+                    specialCheck.style.animation = 'checkboxStrike 0.6s ease-in-out';
+                }
+                specialLabel.classList.add('valid');
+                specialLabel.classList.remove('invalid');
+                securityLevel++;
             } else {
-                document.getElementById("specialCheck").checked = false;
-                document.getElementById("specialCheck").classList.add("invalid");
+                specialCheck.checked = false;
+                specialLabel.classList.add('invalid');
+                specialLabel.classList.remove('valid');
+                breachDetected = true;
             }
 
-            // Update the strength bar
+            // Update Security Level Indicator
             const strengthBar = document.getElementById("strengthBar");
-            const strengthPercentage = (strength / 5) * 100;
+            const strengthPercentage = (securityLevel / 5) * 100;
             strengthBar.style.width = strengthPercentage + "%";
-
-            // Update color based on strength
-            if (strengthPercentage <= 20) {
-                strengthBar.style.backgroundColor = "red";
-            } else if (strengthPercentage <= 40) {
-                strengthBar.style.backgroundColor = "orange";
-            } else if (strengthPercentage <= 60) {
-                strengthBar.style.backgroundColor = "yellow";
-            } else if (strengthPercentage <= 80) {
-                strengthBar.style.backgroundColor = "lightgreen";
-            } else {
-                strengthBar.style.backgroundColor = "green";
+            
+            // Play sound only when all conditions are met
+            if (securityLevel === 5) {
+                playBeep(1000, 0.5);
             }
 
-            // Display result message
-            if (strength === 5) {
-                resultDiv.innerHTML = "<p class='feedback'>Strong password! All criteria met.</p>";
+            // Display Security Analysis Results
+            if (password.length === 0) {
+                resultDiv.className = 'result';
+                resultDiv.innerHTML = 'AWAITING TARGET PASSWORD INPUT...';
+            } else if (securityLevel === 5) {
+                resultDiv.className = 'result secure';
+                resultDiv.innerHTML = 'SECURITY PROTOCOL: MAXIMUM ENCRYPTION ACHIEVED. SYSTEM SECURE.';
+            } else if (securityLevel >= 3) {
+                resultDiv.className = 'result';
+                resultDiv.innerHTML = 'SYSTEM STATUS: PARTIAL SECURITY DETECTED. VULNERABILITIES IDENTIFIED.';
             } else {
-                resultDiv.innerHTML = "<p class='error'>Password does not meet all criteria.</p>";
+                resultDiv.className = 'result breach';
+                resultDiv.innerHTML = 'SECURITY BREACH: CRITICAL VULNERABILITIES DETECTED. IMMEDIATE ACTION REQUIRED.';
+            }
+            
+            // Add glitch effect to result
+            if (breachDetected && password.length > 0) {
+                setTimeout(() => glitchEffect(resultDiv), 500);
             }
         });
+        
+        // Removed typing sound for individual keystrokes
+        
+        // Initialize system
+        console.log('CYBERPUNK SECURITY PROTOCOL v2.0 INITIALIZED');
+        console.log('MATRIX RAIN EFFECT: ACTIVE');
+        console.log('SECURITY ANALYSIS: READY');
     </script>
 
 </body>
