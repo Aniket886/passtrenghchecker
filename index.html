@@ -539,47 +539,129 @@
     </footer>
 
     <script>
-        // Matrix Rain Effect
-        function createMatrixRain() {
-            const matrixBg = document.getElementById('matrixBg');
-            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        // Advanced Matrix Rain Effect
+        class MatrixRainEngine {
+            constructor() {
+                this.characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?';
+                this.columns = [];
+                this.isActive = true;
+            }
             
-            for (let i = 0; i < 50; i++) {
-                const column = document.createElement('div');
-                column.className = 'matrix-column';
-                column.style.left = Math.random() * 100 + '%';
-                column.style.animationDelay = Math.random() * 10 + 's';
-                column.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            createMatrixRain() {
+                const matrixBg = document.getElementById('matrixBg');
                 
-                let text = '';
-                for (let j = 0; j < 50; j++) {
-                    text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                for (let i = 0; i < 80; i++) {
+                    const column = document.createElement('div');
+                    column.className = 'matrix-column';
+                    column.style.left = Math.random() * 100 + '%';
+                    column.style.animationDelay = Math.random() * 15 + 's';
+                    column.style.animationDuration = (Math.random() * 15 + 8) + 's';
+                    column.style.opacity = Math.random() * 0.3 + 0.1;
+                    
+                    let text = '';
+                    for (let j = 0; j < 60; j++) {
+                        text += this.characters[Math.floor(Math.random() * this.characters.length)] + '<br>';
+                    }
+                    column.innerHTML = text;
+                    matrixBg.appendChild(column);
+                    this.columns.push(column);
                 }
-                column.innerHTML = text;
-                matrixBg.appendChild(column);
+            }
+            
+            updateMatrixRain() {
+                if (!this.isActive) return;
+                
+                this.columns.forEach(column => {
+                    if (Math.random() < 0.1) {
+                        const newChar = this.characters[Math.floor(Math.random() * this.characters.length)];
+                        const lines = column.innerHTML.split('<br>');
+                        lines[0] = newChar;
+                        column.innerHTML = lines.join('<br>');
+                    }
+                });
+                
+                setTimeout(() => this.updateMatrixRain(), 100);
+            }
+            
+            start() {
+                this.createMatrixRain();
+                this.updateMatrixRain();
             }
         }
         
-        // Initialize matrix rain
-        createMatrixRain();
+        const matrixEngine = new MatrixRainEngine();
         
-        // Cyberpunk sound effects (using Web Audio API)
+        // Initialize advanced matrix rain
+        matrixEngine.start();
+        
+        // Advanced Cyberpunk Sound System
+        class CyberpunkSoundEngine {
+            constructor() {
+                this.audioContext = null;
+                this.isEnabled = true;
+                this.soundEffects = {
+                    'success': { frequency: 1000, duration: 0.5, type: 'sine' },
+                    'warning': { frequency: 600, duration: 0.3, type: 'square' },
+                    'error': { frequency: 300, duration: 0.2, type: 'sawtooth' },
+                    'typing': { frequency: 800, duration: 0.05, type: 'square' },
+                    'quantum': { frequency: 1200, duration: 0.8, type: 'sine' }
+                };
+            }
+            
+            init() {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.log('Web Audio API not supported');
+                    this.isEnabled = false;
+                }
+            }
+            
+            playSound(effectName) {
+                if (!this.isEnabled || !this.audioContext) return;
+                
+                const effect = this.soundEffects[effectName];
+                if (!effect) return;
+                
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+                
+                oscillator.frequency.value = effect.frequency;
+                oscillator.type = effect.type;
+                
+                gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + effect.duration);
+                
+                oscillator.start(this.audioContext.currentTime);
+                oscillator.stop(this.audioContext.currentTime + effect.duration);
+            }
+            
+            playQuantumSuccess() {
+                this.playSound('quantum');
+            }
+            
+            playSuccess() {
+                this.playSound('success');
+            }
+            
+            playWarning() {
+                this.playSound('warning');
+            }
+            
+            playError() {
+                this.playSound('error');
+            }
+        }
+        
+        const soundEngine = new CyberpunkSoundEngine();
+        soundEngine.init();
+        
+        // Legacy function for backward compatibility
         function playBeep(frequency, duration) {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.value = frequency;
-            oscillator.type = 'square';
-            
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + duration);
+            soundEngine.playSound('success');
         }
         
         // Typewriter effect
@@ -735,9 +817,13 @@
             const strengthPercentage = (securityLevel / 5) * 100;
             strengthBar.style.width = strengthPercentage + "%";
             
-            // Play sound only when all conditions are met
+            // Play advanced sound effects based on security level
             if (securityLevel === 5) {
-                playBeep(1000, 0.5);
+                soundEngine.playQuantumSuccess();
+            } else if (securityLevel >= 3) {
+                soundEngine.playWarning();
+            } else if (securityLevel > 0) {
+                soundEngine.playError();
             }
 
             // Display Security Analysis Results

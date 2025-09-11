@@ -1,25 +1,29 @@
 # 🔮 CYBERPUNK SECURITY PROTOCOL v2.0 🔮
 
-> **NEURAL NETWORK PASSWORD ANALYSIS SYSTEM**
+> **ADVANCED NEURAL NETWORK PASSWORD ANALYSIS SYSTEM**
 
-[![CYBERPUNK](https://img.shields.io/badge/CYBERPUNK-SECURITY-00ff00?style=for-the-badge&logo=matrix&logoColor=black)](https://github.com)
-[![NEURAL](https://img.shields.io/badge/NEURAL-NETWORK-ff0080?style=for-the-badge&logo=brain&logoColor=white)](https://github.com)
-[![QUANTUM](https://img.shields.io/badge/QUANTUM-ENCRYPTION-00ffff?style=for-the-badge&logo=atom&logoColor=black)](https://github.com)
+[![CYBERPUNK](https://img.shields.io/badge/CYBERPUNK-SECURITY-00ff00?style=for-the-badge&logo=matrix&logoColor=black)](https://github.com/Aniket886/passtrenghchecker)
+[![NEURAL](https://img.shields.io/badge/NEURAL-NETWORK-ff0080?style=for-the-badge&logo=brain&logoColor=white)](https://github.com/Aniket886/passtrenghchecker)
+[![QUANTUM](https://img.shields.io/badge/QUANTUM-ENCRYPTION-00ffff?style=for-the-badge&logo=atom&logoColor=black)](https://github.com/Aniket886/passtrenghchecker)
 
 ## 🚀 SYSTEM OVERVIEW
 
 Welcome to the **CYBERPUNK SECURITY PROTOCOL v2.0** - an advanced neural network-powered password strength analyzer that operates in the digital shadows of the cyberpunk future. This system combines cutting-edge security analysis with immersive cyberpunk aesthetics.
 
-### 🌟 FEATURES
+### 🌟 ADVANCED FEATURES
 
-- **🧠 Neural Network Analysis**: Advanced AI-powered password strength assessment
-- **🔐 Quantum Encryption**: Military-grade encryption with random key generation
-- **🎨 Cyberpunk UI**: Immersive matrix-style interface with neon effects
-- **🌧️ Matrix Rain**: Dynamic background with falling digital characters
-- **🔊 Sound Effects**: Cyberpunk audio feedback using Web Audio API
-- **⚡ Real-time Analysis**: Instant security assessment with visual feedback
-- **🛡️ Multi-layer Security**: SHA256, SHA512, and BLAKE2B hashing algorithms
-- **🎯 Pattern Detection**: Advanced pattern recognition and vulnerability assessment
+- **🧠 Neural Network Analysis**: Advanced AI-powered password strength assessment with machine learning algorithms
+- **🔐 Quantum Encryption**: Military-grade encryption with random key generation and quantum-resistant algorithms
+- **🎨 Cyberpunk UI**: Immersive matrix-style interface with neon effects and terminal aesthetics
+- **🌧️ Matrix Rain**: Dynamic background with falling digital characters and real-time updates
+- **🔊 Advanced Sound System**: Cyberpunk audio feedback using Web Audio API with multiple sound effects
+- **⚡ Real-time Analysis**: Instant security assessment with advanced visual feedback and animations
+- **🛡️ Multi-layer Security**: SHA256, SHA512, SHA3-256, SHA3-512, and BLAKE2B hashing algorithms
+- **🎯 Pattern Detection**: Advanced pattern recognition, keyboard pattern detection, and vulnerability assessment
+- **🔬 Threat Assessment**: Comprehensive security threat analysis and risk evaluation
+- **🎭 Quantum Resistance**: Future-proof quantum-resistant encryption and hashing
+- **📊 Neural Scoring**: AI-powered scoring system with 100-point neural network analysis
+- **🔄 Adaptive Security**: Dynamic security levels based on password strength assessment
 
 ## 🛠️ INSTALLATION
 
@@ -57,7 +61,7 @@ Welcome to the **CYBERPUNK SECURITY PROTOCOL v2.0** - an advanced neural network
 3. **Neural Analysis**: Watch as the system performs real-time analysis
 4. **Review Results**: Check security level and recommendations
 
-### API Endpoints
+### Advanced API Endpoints
 
 #### `/neural_analysis` (POST)
 Advanced neural network analysis with quantum encryption
@@ -66,14 +70,34 @@ Advanced neural network analysis with quantum encryption
   "password": "your_password_here"
 }
 ```
+**Response**: Neural network analysis, quantum encryption, adaptive hashing, threat assessment
+
+#### `/quantum_analysis` (POST)
+Quantum-level password analysis with quantum-resistant algorithms
+```json
+{
+  "password": "data_to_analyze"
+}
+```
+**Response**: Quantum entropy analysis, quantum encryption, quantum hashing
+
+#### `/threat_assessment` (POST)
+Comprehensive threat assessment and vulnerability analysis
+```json
+{
+  "password": "password_to_assess"
+}
+```
+**Response**: Threat score, vulnerability level, detected threats, recommendations
 
 #### `/quantum_encrypt` (POST)
-Quantum encryption endpoint
+Advanced quantum encryption with multiple algorithms
 ```json
 {
   "password": "data_to_encrypt"
 }
 ```
+**Response**: Quantum hybrid encryption, AES-256-GCM, quantum-resistant encryption
 
 #### `/security_scan` (POST)
 Comprehensive security vulnerability scan
@@ -82,17 +106,22 @@ Comprehensive security vulnerability scan
   "password": "password_to_scan"
 }
 ```
+**Response**: Security scan results, recommendations, vulnerability score
 
 #### `/system_status` (GET)
-Check system operational status
+Check system operational status and neural network health
 
 ## 🔧 TECHNICAL SPECIFICATIONS
 
-### Security Protocols
-- **Entropy Calculation**: Advanced password entropy analysis
-- **Pattern Detection**: Sequential and repeated character detection
-- **Vulnerability Scoring**: Comprehensive security assessment
-- **Multi-layer Hashing**: SHA256 → SHA512 → BLAKE2B chain
+### Advanced Security Protocols
+- **Neural Network Analysis**: AI-powered feature extraction and scoring
+- **Quantum Entropy Calculation**: Advanced password entropy with character frequency analysis
+- **Pattern Detection**: Sequential, repeated, and keyboard pattern detection
+- **Vulnerability Scoring**: Comprehensive 100-point security assessment
+- **Multi-layer Hashing**: SHA256 → SHA512 → BLAKE2B → SHA3-256 → SHA3-512 chain
+- **Quantum-resistant Hashing**: 1000-round SHA3-512 with quantum salt
+- **Threat Assessment**: Real-time threat detection and risk evaluation
+- **Adaptive Security**: Dynamic security levels based on password strength
 
 ### Frontend Technologies
 - **HTML5**: Semantic markup with cyberpunk styling
